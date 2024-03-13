@@ -3,10 +3,11 @@
 #include <time.h>
 #include <stdlib.h>
 
-int lives=8;
+int lives=8,choice,l=0; //l to remove slight bugs during displaying
 int num_of_correct_guesses;
 
 
+void intro();
 int select_choice();
 int return_current_status(char guessed_string[],char *current_status[],char selected_word[],int length);
 void print_current_status(char *current_status[],int length);
@@ -16,7 +17,8 @@ void display_hangman(int result);
 int main()
 {
     system("clear"); //To clear the terminal on Unix/Linux/Mac //Use: system("cls") for Windows
-    srand(time(0));
+    intro();
+    srand(time(0));   //Generating the seed to randomise the text to be predicted
     char data[][500]={"You couldn't live with your own failure, and where does that get you? Back to me",
                       "The hardest choices require the strongest wills",
                       "I am deadpool",
@@ -40,10 +42,10 @@ int main()
                       };
     int n=23;
     int selected_index;
-    printf("\n#*#*#*#*#*#*#*#*#*#*#*#*\n\n");
+    printf("\n\n");
     display_hangman(lives);  //Displaying the podium for hanging
     //int selected_index=rand() % n;  //Selecting a random index
-    int choice=select_choice();
+    choice=select_choice();
     if(choice==1)
      selected_index=rand()%5;
     else if(choice==2)
@@ -54,7 +56,7 @@ int main()
      selected_index=rand()%5+15;
     else
      {
-        printf("Wrong Choice");
+        printf("Wrong Choice\n");
         return 0;
         
      }
@@ -72,7 +74,9 @@ int main()
     
     while(x<num)
     {
-        printf("\nPlayer%d\n",(x+1));
+        fgetc(stdin);
+        system("clear");
+        
         lives=8;
         char guessed_string[length]; 
 
@@ -97,22 +101,34 @@ int main()
      
     
      num_of_correct_guesses=0;
-      fgetc(stdin);
+      //fgetc(stdin);
+      printf("\n         DANIE'S HANGMAN GAME             \n\n");
      while(num_of_correct_guesses<(length-spaces) && lives>0)
       {
+        if(choice==1)
+          printf("\n\n             Marvel Quotes\n");
+        else if(choice==2)
+          printf("\n\n             Famous Quotes\n");
+        else if(choice==3)
+          printf("\n\n             Famous Movies\n");
+        else if(choice==4)
+          printf("\n\n             Graded Sem2 Courses\n");
         
+        printf("\n\nPlayer%d\n",(x+1));
         display_hangman(lives);
         
         //printf("%d",length);
-        printf("\n**************************\n");
+        printf("\n**************************\n\n");
         print_current_status(current_status,length);
         
-        printf("Enter a letter or directly predict the sentence!!\n!!!DO NOT REPEAT THE LETTERS ALREADY TYPED!!! (Don't be a Dumbass)\nNumber of lives:%d\n",lives);
+        printf("\n\nEnter a letter or directly predict the sentence!!\n\n!!!DO NOT REPEAT THE LETTERS ALREADY TYPED!!! (Don't be a Dumbass)\n\n\nNumber of lives left: %d\n",lives);
         
          //scanf("%s",guessed_string);
          //printf("What%s",selected_word);
-          
+          printf("\n\nYour Prediction::  ");
          fgets(guessed_string,length+1,stdin);
+          if(l==0)
+         printf("         DANIE'S HANGMAN GAME             \n\n\n");
 
          if(guessed_string[1]=='\n')
           guessed_string[1]=0;   //Zero can be inserted to a string to represent NULL
@@ -120,6 +136,7 @@ int main()
         
         if(strcmp("quit\n",guessed_string)==0)
         {
+            system("clear"); 
             printf("You Quit!!!\n");
             printf("The correct answer was: %s\n",selected_word);
             display_hangman(0);
@@ -131,11 +148,13 @@ int main()
         int status=return_current_status(guessed_string,current_status,selected_word,length);
         if(status==1)
          {
-            printf("Correct");
+            system("clear"); 
+            printf("Correct\n");
             if(num_of_correct_guesses==length-spaces) //To check if the control has reached the end of the iteration
             {
+                display_hangman(-1);
                printf("\n**************************\n");
-               printf("\nCongrats!! You have predicted successfully!!\n");
+               printf("\nCongrats!! You have predicted successfully!!\n\n");
                return_current_status(guessed_string,current_status,selected_word,length);
                print_current_status(current_status,length);
                printf("\n********************\n");
@@ -145,17 +164,21 @@ int main()
          }
         else if(status==0)   //letter we typed is not there in the string
          {
+            system("clear"); 
             printf("WRONG GUESS\nYou lose a life!!");
             lives--;
             }
 
         else if(status==2)  //Correctly guessed the Sentence
         {
+            system("clear");
+            display_hangman(-1);
             printf("\n**************************\n");
-               printf("\nCongrats!! You have predicted successfully!!\n");
+               printf("\nCongrats!! You have predicted successfully!!\n\n");
                return_current_status(guessed_string,current_status,selected_word,length);
                print_current_status(current_status,length);
             printf("\n********************\n");
+            fgetc(stdin);
                break;
 
         }
@@ -166,6 +189,7 @@ int main()
       
       if(lives==0)
       {
+        system("clear"); 
          printf("You lose because you ran out of lives\nThe correct answer was: %s\n",selected_word);
          display_hangman(lives);  //DEAD!!
       }
@@ -173,11 +197,16 @@ int main()
        
        printf("\n********************\n");
 
-       
+       l=0;
        if(status==3)     //If a wrong string was typed when we predicted the entire string, we get some extra characters in the input buffer
         {
+            if(lives==0)
+            printf("You predicted the Wrong String!!!\n\n");
+            else
             printf("You predicted the Wrong String!!! Click Enter to continue");
+            l=1;
             while ((getchar()) != '\n');//In order to get rid of those characters
+            system("clear");
         }
 
        printf("\n********************\n");
@@ -189,20 +218,25 @@ int main()
      free(current_status[i]);
     
     
-    printf("\nNumber of lives left: %d\n",lives);
+    printf("\n\nNumber of lives left: %d\n",lives);
     life[x]=lives;
      x++;
+
+    if(num>1&&num!=x)
+     printf("\n\nClick Enter for the next player:");
+
 
     }
     int dupe[num];
     for(int i=0;i<num;i++)
      dupe[i]=life[i];
     
-    int winner,y,temp,z;
+    int winner=life[0],y,temp=0,z=0;
     for(int i=0;i<num;i++)
     {
+        y=i;
         winner=life[i];
-        for(int j=i+1;j<num;j++)
+        for(int j=i+1;j<num-1;j++)
         {
            if(life[j]>winner)
            {
@@ -214,9 +248,15 @@ int main()
         temp=life[i];
         life[i]=life[y];
         life[y]=temp;
+    
         
     }
-    printf("!! LEADERBOARD !!\n");
+    printf("\n\nClick Enter to display the Leaderboard!!!\n");
+    fgetc(stdin);
+    system("clear");
+    printf("DANIE'S HANGMAN GAME\n\n");
+    printf("\n\n********************\n");
+    printf("\n    !! LEADERBOARD !!\n\n");
     for(int i=0;i<num;i++)
     {
         for(int j=0;j<num;j++)
@@ -227,8 +267,9 @@ int main()
               break;
             }
         }
-        printf("%d. Player%d Lives: %d\n",(i+1),z+1,life[i]);
+        printf("%d. Player%d : Lives left: %d\n",(i+1),z+1,life[i]);
     }
+    printf("\n********************\n\n\n\n\n\n\n");
 
     return 0;
 }
@@ -291,8 +332,8 @@ void print_current_status(char *current_status[],int length)
 int select_choice()
 {
     
-    printf("\nWelcome to Danie's Hangman Game\n");
-    printf("Choose a Category to play the Game.\n1. Marvel Quotes\n2. Famous Quotes\n3. Famous Movies\n4. Graded Sem 2 Courses\nChoice: ");
+    printf("\n\n\n\nWelcome to Danie's Hangman Game\n");
+    printf("Choose a Category to play the Game.\n1. Marvel Quotes\n2. Famous Quotes\n3. Famous Movies\n4. Graded Sem 2 Courses\n\n\nChoice: ");
     int choice;
     scanf("%d",&choice);
     printf("\n#*#*#*#*#*#*#*#*#*#*#*#*\n");
@@ -303,22 +344,76 @@ int select_choice()
 void display_hangman(int result)   //Displaying the hanged man
 {
     if(result==8)
-     printf("   ___________________\n   |\n   |\n   |\n   |\n   |\n   |\n   |\n   |________________________");
+     printf("   ___________________\n   |/\n   |\n   |\n   |\n   |\n   |\n   |\n   |________________________");
     if(result==7)
-     printf("   ___________________\n   |          |\n   |\n   |\n   |\n   |\n   |\n   |\n   |________________________");
+     printf("   ___________________\n   |/         |\n   |\n   |\n   |\n   |\n   |\n   |\n   |________________________");
     if(result==6)
-     printf("   ___________________\n   |          |\n   |          |\n   |\n   |\n   |\n   |\n   |\n   |________________________"); 
+     printf("   ___________________\n   |/         |\n   |          |\n   |\n   |\n   |\n   |\n   |\n   |________________________"); 
     if(result==5)
-     printf("   ___________________\n   |          |\n   |          |\n   |          O\n   |\n   |\n   |\n   |\n   |________________________"); 
+     printf("   ___________________\n   |/         |\n   |          |\n   |          O\n   |\n   |\n   |\n   |\n   |________________________"); 
     if(result==4)
-     printf("   ___________________\n   |          |\n   |          |\n   |          O\n   |          |\n   |          |\n   |\n   |\n   |________________________"); 
+     printf("   ___________________\n   |/         |\n   |          |\n   |          O\n   |          |\n   |          |\n   |\n   |\n   |________________________"); 
     if(result==3)
-     printf("   ___________________\n   |          |\n   |          |\n   |          O\n   |         /|\n   |          |\n   |\n   |\n   |________________________"); 
+     printf("   ___________________\n   |/         |\n   |          |\n   |          O\n   |         /|\n   |          |\n   |\n   |\n   |________________________"); 
     if(result==2)
-     printf("   ___________________\n   |          |\n   |          |\n   |          O\n   |         /|\\\n   |          |\n   |\n   |\n   |________________________"); 
+     printf("   ___________________\n   |/         |\n   |          |\n   |          O\n   |         /|\\\n   |          |\n   |\n   |\n   |________________________"); 
     if(result==1)
-     printf("   ___________________\n   |          |\n   |          |\n   |          O\n   |         /|\\\n   |          |\n   |         / \n   |\n   |________________________"); 
+     printf("   ___________________\n   |/         |\n   |          |\n   |          O\n   |         /|\\\n   |          |\n   |         / \n   |\n   |________________________"); 
     if(result==0)
-     printf("   ___________________\n   |          |\n   |          |\n   |          O\n   |         /|\\\n   |          |\n   |         / \\\n   |\n   |________________________");
+     printf("   ___________________\n   |/         |\n   |          |\n   |          O\n   |         /|\\               YOU DIED!!!\n   |          |\n   |         / \\        \n   |\n   |________________________");
+    if(result==-1)
+     printf("   ___________________\n   |/          \n   |       YOU WIN!!  \n   |           \n   |             \n   |         \\O/\n   |          |\n   |          |\n   |_________/_\\______________");
+}
 
+void intro()
+{
+    printf("         DANIE'S HANGMAN GAME   ");
+    printf("\n\n   __________________________________________________________\n");
+    printf("   |                   DANIE'S HANGMAN GAME                 |   \n");
+    printf("   |                                                        |   \n");
+    printf("   |          ____________               ____________       |   \n");
+    printf("   |          |      |                   |                  |   \n");
+    printf("   |          |      O                   |                  |   \n");
+    printf("   |          |     /|\\                  |                  |   \n");
+    printf("   |          |     / \\                  |    \\ O /         |   \n");
+    printf("   |          |                          |      |           |   \n");
+    printf("   |          |___________               |_____/_\\_____     |   \n");
+    printf("   |                                                        |   \n");
+    printf("   |________________________________________________________|   \n");
+    printf("\n\n\nClick Enter to continue: ");
+    fgetc(stdin);
+    system("clear");
+     printf("         DANIE'S HANGMAN GAME             ");
+    printf("\n\n       _____________________________________________________________\n");
+    printf("      ||                                                          ||\n");
+    printf("      ||                RULES AND REGULATIONS                     ||\n");
+    printf("      ||                                                          ||\n");
+    printf("      ||                                                          ||\n");
+    printf("      ||    1. The game has both single and multiplayer modes.    ||\n");
+    printf("      ||    2. A category can be chosen from a given set.         ||\n");
+    printf("      ||    3. Any number of players can compete                  ||\n");
+    printf("      ||       against each other.                                ||\n");
+    printf("      ||    4. In a game, all the players will be given the       ||\n");
+    printf("      ||       same word/quote randomly and the winner is decided ||\n");
+    printf("      ||       on the basis of which player has accurately        ||\n");
+    printf("      ||       guessed the answer consuming the least number      ||\n");
+    printf("      ||       of lives.                                          ||\n");
+    printf("      ||    5.Each player will have 8 lives.                      ||\n");
+    printf("      ||    6.In every round, a player can either predict         ||\n");
+    printf("      ||      a letter in the word/quote or the entire string     ||\n");
+    printf("      ||      itself if confident.                                ||\n");
+    printf("      ||    7. In either case, If their prediction is wrong,      ||\n");
+    printf("      ||       they lose a life.                                  ||\n");
+    printf("      ||                                                          ||\n");
+    printf("      ||                                                          ||\n");
+    printf("      ||  PRECAUTION!!: Do not re-enter your predicted letter!!   ||\n");
+    printf("      ||                                                          ||\n");
+    printf("      ||__________________________________________________________||\n");
+
+    printf("\n\n\nClick Enter if you have properly read the Rules: ");
+    fgetc(stdin);
+    system("clear");
+    printf("         DANIE'S HANGMAN GAME             ");
+
+    return;
 }
