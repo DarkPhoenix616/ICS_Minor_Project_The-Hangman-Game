@@ -1,7 +1,7 @@
-My Minor Project for the Introduction to Computer Science Course!!
-
 ## ICS Minor Project
    -Danie George John (B23CI1012)
+
+My Minor Project for the Introduction to Computer Science Course!!
 
 ## Danie's Hangman Game
 
