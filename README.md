@@ -1,9 +1,9 @@
 My Minor Project for the Introduction to Computer Science Course!!
 
-ICS Minor Project
+## ICS Minor Project
    -Danie George John (B23CI1012)
 
-##Danie's Hangman Game
+## Danie's Hangman Game
 
 
 Welcome to the Hangman game, a modern twist on the classic word-guessing game! This version of Hangman features various categories, supports both single and multiplayer modes, and includes background music and sound effects to enhance the gaming experience.
