@@ -427,7 +427,7 @@ void intro()
   // printf("\033[0;34m\n");//blue
 
   printf("\n        \x1b[33m");
-    char welcome[100]="HANGMAN GAME";
+    char welcome[100]="DANIE'S HANGMAN GAME";
     for(int i=0;i<strlen(welcome);i++)
     {
         putchar(welcome[i]);
@@ -440,7 +440,7 @@ void intro()
   printf("\033[0m\n");           // default
 
   printf("\n\n      __________________________________________________________\n");
-  printf("      |                     HANGMAN GAME                       |   \n");
+  printf("      |                   DANIE'S HANGMAN GAME                 |   \n");
   printf("      |                                                        |   \n");
   printf("      |          ____________               ____________       |   \n");
   printf("      |          |      |                   |                  |   \n");
@@ -459,7 +459,7 @@ void intro()
   printf("\033[0m\n");
   system("clear");
   printf("\033[0;36m\n");
-  printf("\n                       THE HANGMAN GAME   \n");
+  printf("\n                     DANIE'S HANGMAN GAME   \n");
   printf("\033[0m\n");
   
   printf("\033[0m\n");
@@ -501,7 +501,7 @@ void intro()
   printf("\033[0m\n");
   system("clear");
   printf("\033[0;36m\n");
-  printf("\n                        HANGMAN GAME   \n");
+  printf("\n                   DANIE'S HANGMAN GAME   \n");
   printf("\033[0m\n");
 
   return;
