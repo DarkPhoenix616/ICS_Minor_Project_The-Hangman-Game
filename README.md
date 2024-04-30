@@ -6,7 +6,7 @@ My Minor Project for the Introduction to Computer Science Course!!
 ## Danie's Hangman Game
 
 
-Welcome to the Hangman game, a modern twist on the classic word-guessing game! This version of Hangman features various categories, supports both single and multiplayer modes, and includes background music and sound effects to enhance the gaming experience.
+Welcome to Danie's Hangman game, a modern twist on the classic word-guessing game! This version of Hangman features various categories, supports both single and multiplayer modes, and includes background music and sound effects to enhance the gaming experience.
 
 ## Features:
 
@@ -21,7 +21,7 @@ Welcome to the Hangman game, a modern twist on the classic word-guessing game! T
 
 - C Compiler (e.g., GCC)
 - Standard C Libraries
-- afplay (Command Line Audio Player) - For Mac users
+- afplay (Command Line Audio Player) - For Mac users 
 
 ## How to Play:
 
@@ -43,12 +43,10 @@ The Hangman game is written in C and utilizes various standard C libraries such 
 - **Main Functionality**: The core functionality of the game is implemented in the `start_hangman()` function, which handles the main game loop, player input, word selection, and gameplay logic.
 - **User Interface**: The game provides a user-friendly interface with clear instructions, category selection, and interactive gameplay.
 - **Terminal Clearing**: The `system("clear")` command is used at appropriate places to clear the terminal screen for better readability.
-- **Background Music and Sound Effects**: Background music and sound effects are implemented using the `afplay` command line audio player, enhancing the overall gaming experience.
 - **Signal Handling**: Signal handling is implemented to terminate background music and sound effects when the game is exited.
 
 ---
 
-Feel free to customize this README further with additional details, instructions, or any other information you find relevant. Enjoy playing the Hangman game!
 
    Rules and Regulations to be followed
     
