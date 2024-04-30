@@ -6,41 +6,49 @@ ICS Minor Project
 Danie's Hangman Game
 
 
-Welcome to Danie's Hangman game, a modern twist on the classic word-guessing game! This version of Hangman features various categories, supports both single and multiplayer modes, and includes background music and sound effects to enhance the gaming experience.
+Welcome to the Hangman game, a modern twist on the classic word-guessing game! This version of Hangman features various categories, supports both single and multiplayer modes, and includes background music and sound effects to enhance the gaming experience.
 
-Features:
+## Features:
 
-Multiple Categories: Choose from various categories including Marvel Quotes, Famous Quotes, Famous Movies, and Graded Semester 2 Courses.
-Single and Multiplayer Modes: Play alone or compete against friends.
-Leaderboard: A final leaderboard ranks players based on the number of lives they have left, with a maximum of 8 lives per player.
-Interactive Gameplay: Players can predict individual letters or the entire string itself, with wrong guesses resulting in the loss of a life.
-Background Music: Enjoy immersive gameplay with background music playing throughout the game.
-Sound Effects: Engage with the game using sound effects such as rope sounds, victory sounds, and more.
-Requirements:
+- **Multiple Categories**: Choose from various categories including Marvel Quotes, Famous Quotes, Famous Movies, and Graded Semester 2 Courses.
+- **Single and Multiplayer Modes**: Play alone or compete against friends.
+- **Leaderboard**: A final leaderboard ranks players based on the number of lives they have left, with a maximum of 8 lives per player.
+- **Interactive Gameplay**: Players can predict individual letters or the entire string itself, with wrong guesses resulting in the loss of a life.
+- **Background Music**: Enjoy immersive gameplay with background music playing throughout the game.
+- **Sound Effects**: Engage with the game using sound effects such as rope sounds, victory sounds, and more.
 
-C Compiler (e.g., GCC)
-Standard C Libraries
-afplay (Command Line Audio Player) - For Mac users
-How to Play:
+## Requirements:
 
-Clone the repository.
-Compile the code using a C compiler.
-Ensure you have afplay installed on your Mac system for audio playback.
-Run the compiled executable.
-Follow the on-screen instructions to play the game.
-Background Sound and Sound Effects:
+- C Compiler (e.g., GCC)
+- Standard C Libraries
+- afplay (Command Line Audio Player) - For Mac users
 
-Background Music: The game features background music to enhance the gaming atmosphere. The music file is played using the afplay command line audio player.
-Sound Effects: Various sound effects are used throughout the game, including rope sounds, victory sounds, and more. These sound effects are also played using afplay.
-Code Analysis:
+## How to Play:
 
-The Hangman game is written in C and utilizes various standard C libraries such as stdio.h, string.h, time.h, stdlib.h, and more. Here's a brief analysis of the code structure:
+1. Clone the repository.
+2. Compile the code using a C compiler.
+3. Ensure you have `afplay` installed on your Mac system for audio playback.
+4. Run the compiled executable.
+5. Follow the on-screen instructions to play the game.
 
-Main Functionality: The core functionality of the game is implemented in the start_hangman() function, which handles the main game loop, player input, word selection, and gameplay logic.
-User Interface: The game provides a user-friendly interface with clear instructions, category selection, and interactive gameplay.
-Terminal Clearing: The system("clear") command is used at appropriate places to clear the terminal screen for better readability.
-Background Music and Sound Effects: Background music and sound effects are implemented using the afplay command line audio player, enhancing the overall gaming experience.
-Signal Handling: Signal handling is implemented to terminate background music and sound effects when the game is exited.
+## Background Sound and Sound Effects:
+
+- **Background Music**: The game features background music to enhance the gaming atmosphere. The music file is played using the `afplay` command line audio player.
+- **Sound Effects**: Various sound effects are used throughout the game, including rope sounds, victory sounds, and more. These sound effects are also played using `afplay`.
+
+## Code Analysis:
+
+The Hangman game is written in C and utilizes various standard C libraries such as `stdio.h`, `string.h`, `time.h`, `stdlib.h`, and more. Here's a brief analysis of the code structure:
+
+- **Main Functionality**: The core functionality of the game is implemented in the `start_hangman()` function, which handles the main game loop, player input, word selection, and gameplay logic.
+- **User Interface**: The game provides a user-friendly interface with clear instructions, category selection, and interactive gameplay.
+- **Terminal Clearing**: The `system("clear")` command is used at appropriate places to clear the terminal screen for better readability.
+- **Background Music and Sound Effects**: Background music and sound effects are implemented using the `afplay` command line audio player, enhancing the overall gaming experience.
+- **Signal Handling**: Signal handling is implemented to terminate background music and sound effects when the game is exited.
+
+---
+
+Feel free to customize this README further with additional details, instructions, or any other information you find relevant. Enjoy playing the Hangman game!
 
    Rules and Regulations to be followed
     
